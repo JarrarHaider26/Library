@@ -34,9 +34,9 @@ jobs:
             ghcr.io/jarrarhaider26/library-api:latest
             ghcr.io/jarrarhaider26/library-api:${{ github.sha }}
 
-      - name: Update Helm image tag
+      - name: Update Helm application image tag
         run: |
-          sed -i 's/tag: .*/tag: "${{ github.sha }}"/' helm-library/values.yaml
+          sed -i '/^app:/,/^postgres:/ s/^  tag: .*/  tag: "${{ github.sha }}"/' helm-library/values.yaml
 
       - name: Commit and push Helm update
         run: |
