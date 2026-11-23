@@ -25,5 +25,5 @@ postgres:
     type: ClusterIP
   pvc:
     name: postgres-pvc
-    storage: 5Gi
+    storage: 1Gi
     accessMode: ReadWriteOnce
