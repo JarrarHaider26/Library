@@ -1,7 +1,7 @@
 app:
   name: library-api
   image: ghcr.io/jarrarhaider26/library-api
-  tag: latest
+  tag: "e52355423a757bf65d027ca8fe9bf2060b452c36"
   pullPolicy: IfNotPresent
   replicas: 1
   secretKey: mysecretkey
@@ -15,7 +15,7 @@ app:
 postgres:
   name: postgres
   image: postgres
-  tag: 15-alpine
+  tag: "e52355423a757bf65d027ca8fe9bf2060b452c36"
   db: library_db
   user: library_user
   password: library_pass
