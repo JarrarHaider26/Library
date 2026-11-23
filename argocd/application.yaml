@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/JarrarHaider26/Library.git
+    repoURL: https://github.com/jarrarhaider313/Library.git
     targetRevision: main
     path: helm-library
   destination:
