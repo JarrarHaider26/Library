@@ -1,0 +1,47 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push application image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: |
+            ghcr.io/jarrarhaider26/library-api:latest
+            ghcr.io/jarrarhaider26/library-api:${{ github.sha }}
+
+      - name: Update Helm image tag
+        run: |
+          sed -i 's/tag: .*/tag: "${{ github.sha }}"/' helm-library/values.yaml
+
+      - name: Commit and push Helm update
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add helm-library/values.yaml
+          git diff --cached --quiet || git commit -m "Deploy image ${{ github.sha }} [skip ci]"
+          git push

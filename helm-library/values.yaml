@@ -1,6 +1,6 @@
 app:
   name: library-api
-  image: library-api
+  image: ghcr.io/jarrarhaider26/library-api
   tag: latest
   pullPolicy: IfNotPresent
   replicas: 1

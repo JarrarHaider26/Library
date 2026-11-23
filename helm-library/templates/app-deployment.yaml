@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.app.name }}
+spec:
+  replicas: {{ .Values.app.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.app.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.app.name }}
+    spec:
+      containers:
+        - name: {{ .Values.app.name }}
+          image: "{{ .Values.app.image }}:{{ .Values.app.tag }}"
+          imagePullPolicy: {{ .Values.app.pullPolicy }}
+          ports:
+            - containerPort: 8000
+          env:
+            - name: SECRET_KEY
+              value: {{ .Values.app.secretKey | quote }}
+            - name: ALGORITHM
+              value: {{ .Values.app.algorithm | quote }}
+            - name: DATABASE_URL
+              value: {{ .Values.app.databaseUrl | quote }}
