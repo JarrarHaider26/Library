@@ -15,7 +15,7 @@ app:
 postgres:
   name: postgres
   image: postgres
-  tag: "e52355423a757bf65d027ca8fe9bf2060b452c36"
+  tag: 15-alpine
   db: library_db
   user: library_user
   password: library_pass
