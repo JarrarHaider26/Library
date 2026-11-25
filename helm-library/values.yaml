@@ -1,7 +1,7 @@
 app:
   name: library-api
   image: ghcr.io/jarrarhaider26/library-api
-  tag: "f8e2c846d6642f49197ba8372f8fa115e045b8af"
+  tag: "11d9c488367bd850642ace296394e6e70fa16746"
   pullPolicy: IfNotPresent
   replicas: 1
   secretKey: mysecretkey
