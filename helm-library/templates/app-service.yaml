@@ -12,4 +12,7 @@ spec:
       name: http
       port: {{ .Values.app.service.port }}
       targetPort: 8000
+      {{- if .Values.app.service.nodePort }}
+      nodePort: {{ .Values.app.service.nodePort }}
+      {{- end }}
   type: {{ .Values.app.service.type }}
