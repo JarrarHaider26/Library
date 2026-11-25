@@ -4,9 +4,9 @@ metadata:
   name: grafana
   namespace: monitoring
 spec:
-  replicas: 1 
+  replicas: 1
   selector:
-    matchLabel                                              ss:
+    matchLabels:
       app: grafana
   template:
     metadata:
