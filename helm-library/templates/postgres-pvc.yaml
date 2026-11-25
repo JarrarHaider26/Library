@@ -5,6 +5,9 @@ metadata:
 spec:
   accessModes:
     - {{ .Values.postgres.pvc.accessMode }}
+  {{- with .Values.postgres.pvc.storageClassName }}
+  storageClassName: {{ . | quote }}
+  {{- end }}
   resources:
     requests:
       storage: {{ .Values.postgres.pvc.storage }}
